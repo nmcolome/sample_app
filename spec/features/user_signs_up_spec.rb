@@ -30,10 +30,12 @@ RSpec.describe 'User signs up' do
         fill_in 'user[password_confirmation]', with: '1234'
         click_on 'Create my account'
 
+        expect(current_path).to eq(signup_path)
         expect(page).to have_content('Sign up')
         expect(page).to have_content("Name can't be blank")
         expect(page).to have_content('Email has already been taken')
         expect(page).to have_content('Password is too short (minimum is 6 characters)')
+        expect(User.count).to eq(1)
       end
     end
   end
