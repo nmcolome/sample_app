@@ -17,5 +17,24 @@ RSpec.describe 'User signs up' do
 
       expect(current_path).to eq(home_path)
     end
+
+    context 'user fails validations' do
+      it 'receives feedback and links back to the form' do
+        user = create(:user)
+
+        visit signup_path
+
+        fill_in 'user[name]', with: ' '
+        fill_in 'user[email]', with: user.email.upcase
+        fill_in 'user[password]', with: '1234'
+        fill_in 'user[password_confirmation]', with: '1234'
+        click_on 'Create my account'
+
+        expect(page).to have_content('Sign up')
+        expect(page).to have_content("Name can't be blank")
+        expect(page).to have_content('Email has already been taken')
+        expect(page).to have_content('Password is too short (minimum is 6 characters)')
+      end
+    end
   end
 end

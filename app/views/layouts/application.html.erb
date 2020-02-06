@@ -7,6 +7,13 @@
   <%= render 'layouts/shim' %>
   <body>
     <%= render 'layouts/header' %>
+    <% flash.each do |name, msgs| %>
+      <ul class="<%= name %>" >
+        <% msgs.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
     <div class="container">
       <%= yield %>
     </div>

@@ -9,8 +9,8 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to home_path
     else
-      # @user.save.errors.messages.values
-      #test sad path
+      flash.now[:error] = @user.errors.full_messages
+      render :new
     end
   end
 
