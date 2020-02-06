@@ -11,8 +11,8 @@ RSpec.describe 'User signs up' do
 
       fill_in 'user[name]', with: 'test user'
       fill_in 'user[email]', with: 'test@example.com'
-      fill_in 'user[password]', with: 'dummy'
-      fill_in 'user[password_confirmation]', with: 'dummy'
+      fill_in 'user[password]', with: '123456'
+      fill_in 'user[password_confirmation]', with: '123456'
       click_on 'Create my account'
 
       expect(current_path).to eq(home_path)

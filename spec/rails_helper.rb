@@ -59,7 +59,7 @@ RSpec.configure do |config|
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
-  config.filter_gems_from_backtrace('rack-2.1.2', 'rack-test-1.1.0', 'capybara-3.31.0', 'railties-5.1.7')
+  config.filter_gems_from_backtrace('rack-2.1.2', 'rack-test-1.1.0', 'capybara-3.31.0', 'railties-5.1.7', 'shoulda-matchers-4.2.0')
 end
 
 Shoulda::Matchers.configure do |config|
