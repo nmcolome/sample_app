@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def show
+    @user = User.find(params[:id])
+  end
+
   def new
     @user = User.new
   end
@@ -7,9 +11,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to home_path
+      redirect_to user_path(@user)
     else
-      # flash.now[:error] = @user.errors.full_messages
       render :new
     end
   end

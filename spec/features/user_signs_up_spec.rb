@@ -15,7 +15,9 @@ RSpec.describe 'User signs up' do
       fill_in 'user[password_confirmation]', with: '123456'
       click_on 'Create my account'
 
-      expect(current_path).to eq(home_path)
+      expect(current_path).to eq(user_path(User.last))
+      expect(page).to have_content('Welcome to the Sample App')
+      expect(page).to have_content('test user')
     end
 
     context 'user fails validations' do
