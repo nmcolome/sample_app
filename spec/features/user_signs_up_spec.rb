@@ -16,7 +16,7 @@ RSpec.describe 'User signs up' do
       click_on 'Create my account'
 
       expect(current_path).to eq(user_path(User.last))
-      expect(page).to have_content('Welcome to the Sample App')
+      expect(page).to have_content('Welcome to the Sample App!')
       expect(page).to have_content('test user')
     end
 

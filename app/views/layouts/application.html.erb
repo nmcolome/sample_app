@@ -8,6 +8,9 @@
   <body>
     <%= render 'layouts/header' %>
     <div class="container">
+      <% flash.each do |name, msg| %>
+        <div class="alert alert-<%= name %>"><%= msg %></div>
+      <% end %>
       <%= yield %>
     </div>
     <%= render 'layouts/footer' %>
