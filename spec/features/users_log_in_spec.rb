@@ -20,6 +20,7 @@ RSpec.describe 'Log In' do
       expect(page).to have_content(@user.name)
       within '.nav' do
         expect(page).to have_link('Users')
+        expect(page).to have_link('Account')
         expect(page).to have_link('Settings')
         expect(page).to have_link('Profile')
         expect(page).to have_link('Log out')
