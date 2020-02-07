@@ -18,6 +18,14 @@ RSpec.describe 'User signs up' do
       expect(current_path).to eq(user_path(User.last))
       expect(page).to have_content('Welcome to the Sample App!')
       expect(page).to have_content('test user')
+      within '.nav' do
+        expect(page).to have_link('Users')
+        expect(page).to have_link('Account')
+        expect(page).to have_link('Settings')
+        expect(page).to have_link('Profile')
+        expect(page).to have_link('Log out')
+        expect(page).to_not have_link('Log in')
+      end
     end
 
     context 'user fails validations' do
