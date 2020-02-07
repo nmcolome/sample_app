@@ -5,18 +5,30 @@ RSpec.describe 'Log In' do
     @user = create(:user)
   end
 
-  it 'succesfully logs in' do
-    visit root_path
-    click_on 'Log in'
-
-    expect(current_path).to eq(login_path)
-
-    fill_in 'session[email]', with: @user.email
-    fill_in 'session[password]', with: @user.password
-    click_button 'Log in'
-
-    expect(current_path).to eq(user_path(@user))
-    expect(page).to have_content(@user.name)
+  context 'succesfully logs in' do
+    it "displays user's page & shows sign out links" do
+      visit root_path
+      click_on 'Log in'
+  
+      expect(current_path).to eq(login_path)
+  
+      fill_in 'session[email]', with: @user.email
+      fill_in 'session[password]', with: @user.password
+      click_button 'Log in'
+  
+      expect(current_path).to eq(user_path(@user))
+      expect(page).to have_content(@user.name)
+      within '.nav' do
+        expect(page).to have_link('Users')
+        expect(page).to have_link('Settings')
+        expect(page).to have_link('Profile')
+        expect(page).to have_link('Log out')
+        expect(page).to_not have_link('Log in')
+      end
+  
+      visit home_path
+      expect(page).to_not have_link('Sign up now!')
+    end
   end
 
   context 'user fails to log in' do
